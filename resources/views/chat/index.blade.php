@@ -155,13 +155,16 @@
 
         var channel = pusher.subscribe('message-created');
         channel.bind('message-event', function(data) {
-            if (tempUser != data.message.id_user) {
-                html =
-                    `<li><div class="conversation-list"><div class="ctext-wrap"><div class="ctext-wrap-content"><h5 class="font-size-14 conversation-name"><a href="#" class="text-dark"> ${data.message.id_user} </a><span class="d-inline-block font-size-12 text-muted ms-2"> ${data.message.message_time} </span></h5><p class="mb-0">${data.message.message}</p></div><div class="dropdown align-self-start"><a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="uil uil-ellipsis-v"></i></a><div class="dropdown-menu"><a class="dropdown-item" href="#">Copy</a><a class="dropdown-item" href="#">Save</a><a class="dropdown-item" href="#">Forward</a><a class="dropdown-item" href="#">Delete</a></div></div></div></div></li>`;
-                $(".simplebar-content").append(html);
-                $('div.simplebar-content-wrapper').animate({
-                    scrollTop: $('div.simplebar-content-wrapper').prop("scrollHeight")
-                });
+            console.log(tempUser != "" && tempUser != data.message.id_user)
+            if (tempUser != "") {
+                if (tempUser != data.message.id_user) {
+                    html =
+                        `<li><div class="conversation-list"><div class="ctext-wrap"><div class="ctext-wrap-content"><h5 class="font-size-14 conversation-name"><a href="#" class="text-dark"> ${data.message.id_user} </a><span class="d-inline-block font-size-12 text-muted ms-2"> ${data.message.message_time} </span></h5><p class="mb-0">${data.message.message}</p></div><div class="dropdown align-self-start"><a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="uil uil-ellipsis-v"></i></a><div class="dropdown-menu"><a class="dropdown-item" href="#">Copy</a><a class="dropdown-item" href="#">Save</a><a class="dropdown-item" href="#">Forward</a><a class="dropdown-item" href="#">Delete</a></div></div></div></div></li>`;
+                    $(".simplebar-content").append(html);
+                    $('div.simplebar-content-wrapper').animate({
+                        scrollTop: $('div.simplebar-content-wrapper').prop("scrollHeight")
+                    });
+                }
             }
         });
     </script>
